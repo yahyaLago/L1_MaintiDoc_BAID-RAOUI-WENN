@@ -1,0 +1,19 @@
+# Secrets
+.env
+.env.*
+*.key
+*.pem
+secrets/
+config/secrets*
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+# Manuels constructeurs (non redistribués) et archives
+*_OM_*.pdf
+*Owners_Manual*.pdf
+*.zip
+# Système
+.DS_Store
+Thumbs.db

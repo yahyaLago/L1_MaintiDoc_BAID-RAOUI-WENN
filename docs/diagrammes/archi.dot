@@ -1,0 +1,6 @@
+digraph G { rankdir=TB; node [shape=box style="rounded,filled" fillcolor="#f2f2f2" fontname="DejaVu Sans" fontsize=10]; edge[fontname="DejaVu Sans" fontsize=9];
+subgraph cluster_in {label="Ingestion (hors ligne)"; style=dashed; fontname="DejaVu Sans";
+ inv [label="inventaire.csv\n+ documents/ + images/"]; col [label="1. Collecte\n(contrôle fichiers)"]; fil [label="2. Filtre\nverifie_par, licence"]; ocr [label="3. Extraction\ntexte + OCR scans"]; dec [label="4. Découpage\npage / figure"]; emb [label="5. Embeddings\ntexte + images"]; idx [label="Index vectoriel\n+ métadonnées\n(groupe_acces, equipement_id)" fillcolor="#fde3c8"];
+ inv->col->fil->ocr->dec->emb->idx; }
+u [label="Technicien\nquestion FR + photo" fillcolor="#d7e8f7"]; ag [label="Agent MaintiDoc\n(LLM vision-langage)" fillcolor="#fde3c8"]; ret [label="Recherche filtrée\npar groupe d'accès"]; mcp [label="Serveur MCP\nhistorique, équipement,\ncréation de ticket"]; hum [label="Validation humaine\n(responsable)" fillcolor="#f7d7d7"];
+u->ag; ag->ret [label="requête"]; ret->idx [dir=both]; ag->mcp [label="outils"]; mcp->hum [label="ticket proposé"]; ag->u [label="réponse citée\n(doc, page, figure)\nou abstention"]; }
